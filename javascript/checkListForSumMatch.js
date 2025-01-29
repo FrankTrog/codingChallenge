@@ -13,7 +13,7 @@ const sumToMatch = 17;
 function checkForSumInList(list, target) {
     for (let i = 0; i < numList.length; i++) {
         for (let j = i + 1; j < numList.length; j++) {
-            if (numList[i] + numList[j] === target) {
+            if (i != j && numList[i] + numList[j] === target) {
                 return true;
             }
         }
