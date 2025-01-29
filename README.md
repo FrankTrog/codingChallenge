@@ -1,2 +1,2 @@
-# codingChallenge
-Coding challenges I have undertaken.
+# Coding Challenges
+This repository is a documentation of the coding challenges I have personally undertaken to keep my skills sharp. There will be a variety of languages utilizes as I like to have a wide range of skills in my toolbelt. 
