@@ -1,0 +1,40 @@
+//
+// 250201
+/*
+This problem was asked by Stripe.
+
+Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.
+
+For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
+
+You can modify the input array in-place.
+*/
+
+function findMissingPositiveInteger(searchArray = []) {
+    if (searchArray.length == 0) return 1;
+
+    // Sort, remove values < 0, and remove duplicates from the array.
+    const sortedAndFilteredArray = searchArray.sort((a, b) => a - b)
+        .filter(item => item >= 0)
+        .filter(function (item, pos, ary) {
+            return !pos || item != ary[pos - 1];
+        });
+
+    for (let i = 0; i < sortedAndFilteredArray.length - 1; i++) {
+        let currentNum = sortedAndFilteredArray[i];
+        let nextNum = sortedAndFilteredArray[i + 1];
+
+        if (currentNum + 1 < nextNum) {
+            return currentNum + 1;
+        }
+    }
+    return sortedAndFilteredArray[sortedAndFilteredArray.length - 1] + 1;
+}
+
+const intAr = [3, 4, -1, 1];
+const intAr2 = [1, 2, 0];
+
+const firstArraMissingInt = findMissingPositiveInteger(intAr);
+console.log("First number = " + firstArraMissingInt);
+const firstArraMissingInt2 = findMissingPositiveInteger(intAr2);
+console.log("Second number = " + firstArraMissingInt2);
