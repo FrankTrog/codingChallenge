@@ -1,4 +1,4 @@
-//
+// /javascript/04.returnMissingPositiveInteger.js
 // 250201
 /*
 This problem was asked by Stripe.
@@ -13,12 +13,11 @@ You can modify the input array in-place.
 function findMissingPositiveInteger(searchArray = []) {
     if (searchArray.length == 0) return 1;
 
-    // Sort, remove values < 0, and remove duplicates from the array.
-    const sortedAndFilteredArray = searchArray.sort((a, b) => a - b)
-        .filter(item => item >= 0)
-        .filter(function (item, pos, ary) {
-            return !pos || item != ary[pos - 1];
-        });
+    // Sort and remove values < 0
+    let sortedAndFilteredArray = [...searchArray].sort((a, b) => a - b)
+        .filter(item => item >= 0);
+    if (sortedAndFilteredArray.length == 0) return 1;
+    if (sortedAndFilteredArray.length == 1) return sortedAndFilteredArray[0] + 1;
 
     for (let i = 0; i < sortedAndFilteredArray.length - 1; i++) {
         let currentNum = sortedAndFilteredArray[i];
@@ -32,9 +31,19 @@ function findMissingPositiveInteger(searchArray = []) {
 }
 
 const intAr = [3, 4, -1, 1];
-const intAr2 = [1, 2, 0];
+console.log(intAr, findMissingPositiveInteger(intAr));
 
-const firstArraMissingInt = findMissingPositiveInteger(intAr);
-console.log("First number = " + firstArraMissingInt);
-const firstArraMissingInt2 = findMissingPositiveInteger(intAr2);
-console.log("Second number = " + firstArraMissingInt2);
+const intAr2 = [1, 2, 0];
+console.log(intAr2, findMissingPositiveInteger(intAr2));
+
+const intAr3 = [];
+console.log(intAr3, findMissingPositiveInteger(intAr3));
+
+const intAr4 = [0];
+console.log(intAr4, findMissingPositiveInteger(intAr4));
+
+const intAr5 = [1];
+console.log(intAr5, findMissingPositiveInteger(intAr5));
+
+const intAr6 = [-1];
+console.log(intAr6, findMissingPositiveInteger(intAr6));
